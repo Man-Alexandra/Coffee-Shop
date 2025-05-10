@@ -1,0 +1,19 @@
+<header class="navbar">
+    <div class="logo">
+      Coffee
+      <img src="assets/images/cappuccino.png" alt="Coffee Logo" class="logo-img" />
+    </div>
+    <nav class="nav-links">
+      <a routerLink="/home" routerLinkActive="active">Home</a>
+      <a routerLink="/menu" routerLinkActive="active">Coffee & Bakery</a>
+      <a routerLink="/shop" routerLinkActive="active">Cart</a>
+      <a routerLink="/about" routerLinkActive="active">About</a>
+      <a routerLink="/login" routerLinkActive="active">Login</a>
+      <span class="search-container">
+        <input type="text" [(ngModel)]="searchTerm" placeholder="Search..." class="search-input" />
+        <img src="assets/images/search-icon.png" alt="Search" class="icon-img" (click)="onSearchClick()" />
+      </span>
+      
+    </nav>
+  </header>
+  

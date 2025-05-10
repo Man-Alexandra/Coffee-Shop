@@ -1,0 +1,37 @@
+<div class="shop-container">
+  <h2>Your Cart</h2>
+  
+  <!-- Cart items list -->
+  <div class="cart-items" *ngIf="cartService.getCart().length > 0; else empty">
+    <div class="cart-item" *ngFor="let item of cartService.getCart(); let i = index">
+      <div class="item-image">
+        <img [src]="item.image" alt="{{ item.name }}" />
+      </div>
+      <div class="item-details">
+        <p class="item-name">{{ item.name }}</p>
+        <p class="item-price">${{ item.price.toFixed(2) }}</p>
+
+        <div class="quantity-control">
+          <button (click)="decreaseQuantity(item)" class="quantity-btn">-</button>
+          <span class="quantity">{{ item.quantity }}</span>
+          <button (click)="increaseQuantity(item)" class="quantity-btn">+</button>
+        </div>
+      </div>
+      <button (click)="remove(i)" class="remove-btn">Remove</button>
+    </div>
+  </div>
+
+   <!-- Empty cart message and Shop button -->
+   <ng-template #empty>
+    <p class="empty-message">Your cart is empty.</p>
+    <button class="shop-btn" (click)="goToMenu()">Shop Now</button>
+  </ng-template>
+
+  <!-- Total Section -->
+  <div *ngIf="cartService.getCart().length > 0" class="total-section">
+    <p class="total">Total: ${{ totalPrice.toFixed(2) }}</p>
+  </div>
+
+  <!-- Clear Cart button -->
+  <button *ngIf="cartService.getCart().length > 0" (click)="clear()" class="clear-cart-btn">Clear Cart</button>
+</div>

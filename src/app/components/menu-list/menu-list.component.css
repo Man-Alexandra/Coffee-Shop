@@ -1,0 +1,15 @@
+.menu-title {
+    text-align: center;
+    font-size: 1.7rem;
+    margin-top: 1rem;
+    color: #5c4435;
+  }
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 2rem;
+    padding: 2rem;
+    max-width: 1200px;
+    margin: auto;
+  }
+  

@@ -1,0 +1,7 @@
+<h2 class="menu-title">Our Coffee & Bakery</h2>
+<section class="menu-grid">
+    @for (item of filteredItems; track item.name) {
+      <app-menu-item [item]="item" (add)="onAddProduct($event)" />
+    }
+  </section>
+  

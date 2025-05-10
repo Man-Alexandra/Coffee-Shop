@@ -1,0 +1,13 @@
+<div class="product-card">
+  <img
+    [src]="item.image"
+    [alt]="item.name"
+    class="lazy-load"
+    (load)="onImageLoad($event)"
+  />
+  <div class="coffee-name">{{ item.name }}</div>
+  <div class="product-info">
+    <span class="product-price"> ${{ item.price.toFixed(2) }}</span>
+    <button class="add-button" (click)="onAddClick()">Add</button>
+  </div>
+</div>

@@ -1,0 +1,79 @@
+<div class="home">
+    <img src="assets/images/nolan-issac-It0DCaCBr40-unsplash.jpg" alt="Coffee" />
+    <div class="overlay-content">
+      <h1>Welcome!</h1>
+      <h2>Try the richest coffee in the city!</h2>
+      <button class="order" (click)="goToMenu()">Order now</button>
+    </div>
+  </div>
+  
+  <section class="features">
+    <div class="feature-item">
+      <img src="assets/images/hot-coffee-rounded-cup-on-a-plate-from-side-view.png" alt="Hot Coffee" />
+      <p>Hot Coffee</p>
+    </div>
+    <div class="feature-item">
+      <img src="assets/images/iced-coffee.png" alt="Iced Coffee" />
+      <p>Iced Coffee</p>
+    </div>
+    <div class="feature-item">
+      <img src="assets/images/coffee-cup.png" alt="Cup Coffee" />
+      <p>Cup Coffee</p>
+    </div>
+    <div class="feature-item">
+      <img src="assets/images/cake.png" alt="Dessert" />
+      <p>Dessert</p>
+    </div>
+  </section>
+  
+  <section class="special-coffee">
+    <h2>Our Special Coffee</h2>
+    <div class="slider-wrapper">
+      <button class="prev-btn" (click)="scrollLeft()">←</button>
+      <div class="slider-container">
+        <div class="slider-track" #sliderTrack>
+          <!-- Loop through the coffees and display them -->
+          <div *ngFor="let coffee of coffees" class="slide">
+            <img [src]="coffee.image" [alt]="coffee.name" />
+            <p>{{ coffee.name }}</p>
+          </div>
+        </div>
+      </div>
+      <button class="next-btn" (click)="scrollRight()">→</button>
+    </div>
+  </section>
+
+  <section class="special-coffee">
+    <h2>Our Special Bakery</h2>
+    <div class="slider-wrapper">
+      <button class="prev-btn" (click)="scrollBakeryLeft()">←</button>
+      <div class="slider-container">
+        <div class="slider-track" #bakerySliderTrack>
+          <!-- Loop through the coffees and display them -->
+          <div *ngFor="let bakery of bakeries" class="slide">
+            <img [src]="bakery.image" [alt]="bakery.name" />
+            <p>{{ bakery.name }}</p>
+          </div>
+        </div>
+      </div>
+      <button class="next-btn" (click)="scrollBakeryRight()">→</button>
+    </div>
+  </section>
+
+  <section class="special-coffee">
+    <h2>Our Coffee Bags</h2>
+    <div class="slider-wrapper">
+      <button class="prev-btn" (click)="scrollBagsLeft()">←</button>
+      <div class="slider-container">
+        <div class="slider-track" #bagsSliderTrack>
+          <!-- Loop through the coffees and display them -->
+          <div *ngFor="let bag of bags" class="slide">
+            <img [src]="bag.image" [alt]="bag.name" />
+            <p>{{ bag.name }}</p>
+          </div>
+        </div>
+      </div>
+      <button class="next-btn" (click)="scrollBagsRight()">→</button>
+    </div>
+  </section>
+  
