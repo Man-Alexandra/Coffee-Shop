@@ -1,0 +1,46 @@
+import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { NzTableModule } from 'ng-zorro-antd/table';
+import { NzButtonModule } from 'ng-zorro-antd/button';
+import { NzModalModule } from 'ng-zorro-antd/modal';
+import { NzFormModule } from 'ng-zorro-antd/form';
+import { NzInputModule } from 'ng-zorro-antd/input';
+import { NzIconModule } from 'ng-zorro-antd/icon';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Recipe } from '../../models/recipe-item.model'; 
+import { RECIPES } from '../../mocked/recipes-data.mock';
+
+
+@Component({
+  selector: 'app-customer-recipes',
+  standalone: true,
+  imports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NzTableModule,
+    NzButtonModule,
+    NzModalModule,
+    NzFormModule,
+    NzInputModule,
+    NzIconModule
+  ],
+  templateUrl: './customer-recipes.component.html',
+  styleUrls: ['./customer-recipes.component.css']
+})
+export class CustomerRecipesComponent implements OnInit{
+  recipes: Recipe[] = [];
+
+  ngOnInit(): void {
+    this.recipes = RECIPES;
+  }
+
+  openAddModal() {
+    // vei completa asta ulterior
+  }
+
+  openEditModal(recipe: Recipe) {
+    // vei completa asta ulterior
+  }
+
+}

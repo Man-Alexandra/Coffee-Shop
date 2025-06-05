@@ -1,0 +1,43 @@
+<div class="recipe-table-wrapper">
+  <button class="add-button" (click)="openAddModal()">Add</button>
+
+  <nz-table
+    [nzData]="recipes"
+    [nzPageSize]="8"
+    [nzScroll]="{ x: '1000px' }"
+    [nzBordered]="false"
+    [nzFrontPagination]="true" 
+    class="custom-recipe-table"
+  >
+    <thead>
+      <tr>
+        <th>Image</th>
+        <th>Product</th>
+        <th>Description</th>
+        <th>Ingredients</th>
+        <th>Name</th>
+        <th style="width: 70px;">Age</th>
+        <th>Email</th>
+        <th style="width: 70px;">Edit</th>
+      </tr>
+    </thead>
+     <tbody>
+    <tr *ngFor="let recipe of recipes" class="product-card">
+      <td>
+        <img [src]="recipe.image" alt="{{ recipe.product }}" />
+      </td>
+      <td class="product-name">{{ recipe.product }}</td>
+      <td>{{ recipe.description }}</td>
+      <td>{{ recipe.ingredients.join(', ') }}</td>
+      <td>{{ recipe.name }}</td>
+      <td>{{ recipe.age }}</td>
+      <td>{{ recipe.email }}</td>
+      <td>
+        <button nz-button nzType="link" (click)="openEditModal(recipe)">
+          <i nz-icon nzType="edit"></i>
+        </button>
+      </td>
+    </tr>
+  </tbody>
+  </nz-table>
+</div>

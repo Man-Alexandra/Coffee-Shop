@@ -1,0 +1,84 @@
+
+.recipe-table-wrapper {
+  padding: 4rem;
+  background-color: #fefcf9;
+}
+/* Alternare rânduri: alb / crem */
+::ng-deep .ant-table-tbody > tr:nth-child(odd) {
+  background-color: #ffffff;
+}
+
+::ng-deep .ant-table-tbody > tr:nth-child(even) {
+  background-color: #f2e8dc;
+}
+
+/* Centrează antetul tabelului */
+::ng-deep .ant-table thead > tr > th {
+  text-align: center;
+}
+
+/* Centrează celulele tabelului */
+::ng-deep .ant-table tbody > tr > td {
+  text-align: center;
+  vertical-align: middle;
+}
+
+.product-card {
+  border-radius: 50px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.product-card:hover {
+  transform: scale(1.01);
+}
+
+.product-card img {
+  width: 230px;
+  height: 230px;
+  object-fit: cover;
+  border-radius: 5px;
+
+}
+
+/* Stil pentru titluri */
+.product-name {
+  color: #5c4435;
+  font-weight: bold;
+  font-size: 0.85rem;
+  text-align: center;
+}
+
+/* Buton de adăugare */
+.add-button {
+  padding: 0.5rem 1rem;
+  background-color: #614a3c;
+  color: white;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 80px;
+  flex-shrink: 0;
+  margin-bottom: 1rem;
+}
+
+.add-button:hover {
+  background-color: #7a5e47;
+  width: 130px;
+}
+
+/* Opțional: elimină liniile clasice de tabel */
+::ng-deep .ant-table-thead > tr > th {
+  background-color: #f5f0e6;
+  color: #3e2f24;
+  border-bottom: 1px solid #d9d9d9;
+}
+
+::ng-deep .ant-table-tbody > tr > td {
+  border: none;
+}
