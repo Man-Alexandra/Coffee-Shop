@@ -2,10 +2,11 @@
   <button class="add-button" (click)="openAddModal()">Add</button>
 
   <nz-table
-    [nzData]="recipes"
+    [nzData]="displayedRecipes"
+    [nzFrontPagination]="false"
+    [nzShowPagination]="false"
     [nzScroll]="{ x: '1000px' }"
     [nzBordered]="false"
-    [nzFrontPagination]="false"
     class="custom-recipe-table"
   >
     <thead>
@@ -15,37 +16,142 @@
         <th>Description</th>
         <th>Ingredients</th>
         <th>Name</th>
-        <th style="width: 70px;">Age</th>
+        <th style="width: 70px">Age</th>
         <th>Email</th>
-        <th style="width: 70px;">Edit</th>
+        <th style="width: 70px">Edit</th>
       </tr>
     </thead>
-     <tbody>
-    <tr *ngFor="let recipe of pagedRecipes" class="product-card">
-      <td>
-        <img [src]="recipe.image" alt="{{ recipe.product }}" />
-      </td>
-      <td class="product-name">{{ recipe.product }}</td>
-      <td>{{ recipe.description }}</td>
-      <td>{{ recipe.ingredients.join(', ') }}</td>
-      <td>{{ recipe.name }}</td>
-      <td>{{ recipe.age }}</td>
-      <td>{{ recipe.email }}</td>
-      <td>
-        <button nz-button nzType="link" (click)="openEditModal(recipe)">
-          <i nz-icon nzType="edit"></i>
-        </button>
-      </td>
-    </tr>
-  </tbody>
+    <tbody>
+      <tr *ngFor="let recipe of displayedRecipes" class="product-card">
+        <td><img [src]="recipe.image" alt="{{ recipe.product }}" /></td>
+        <td class="product-name">{{ recipe.product }}</td>
+        <td>{{ recipe.description }}</td>
+        <td>{{ recipe.ingredients.join(", ") }}</td>
+        <td>{{ recipe.name }}</td>
+        <td>{{ recipe.age }}</td>
+        <td>{{ recipe.email }}</td>
+        <td>
+          <button nz-button nzType="link" (click)="openEditModal()">
+            <i nz-icon nzType="edit"></i>
+          </button>
+        </td>
+      </tr>
+    </tbody>
   </nz-table>
-  <nz-pagination
-  [nzTotal]="recipes.length"
-  [nzPageSize]="pageSize"
-  [(nzPageIndex)]="currentPage"
-  (nzPageIndexChange)="onPageChange($event)"
-  [nzShowSizeChanger]="false"
-  class="pagination-center"
-></nz-pagination>
-</div>
 
+  <div class="pagination-buttom">
+    <nz-pagination
+      [nzPageIndex]="pageIndex"
+      [nzPageSize]="pageSize"
+      [nzTotal]="recipes.length"
+      [nzPageSizeOptions]="[8, 16, 24]"
+      (nzPageIndexChange)="onPageIndexChange($event)"
+      (nzPageSizeChange)="onPageSizeChange($event)"
+    >
+    </nz-pagination>
+  </div>
+
+  <nz-modal
+    [(nzVisible)]="isModalVisible"
+    [nzTitle]="isEditMode ? 'Edit Recipe' : 'Add New Coffee Recipe'"
+    (nzOnCancel)="handleCancel()"
+    (nzOnOk)="handleOk()"
+    [nzOkText]="isEditMode ? 'Update' : 'Create'"
+    [nzWidth]="600"
+    [nzCentered]="true"
+    [nzMaskClosable]="false"
+    [nzMask]="true"
+  >
+    <ng-container *nzModalContent>
+      <form nz-form [formGroup]="recipeForm" nzLayout="horizontal">
+        <nz-form-item>
+          <nz-form-label [nzSpan]="6" nzRequired>Product</nz-form-label>
+          <nz-form-control
+            [nzSpan]="18"
+            nzErrorTip="Please enter the product name!"
+          >
+            <nz-input-group [nzPrefix]="coffeeIcon">
+              <input
+                nz-input
+                formControlName="product"
+                placeholder="Coffee product name"
+              />
+            </nz-input-group>
+            <ng-template #coffeeIcon>
+              <nz-icon nzType="coffee" nzTheme="outline" />
+            </ng-template>
+          </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
+          <nz-form-label [nzSpan]="6" nzRequired>Description</nz-form-label>
+          <nz-form-control
+            [nzSpan]="18"
+            nzErrorTip="Please enter a description!"
+          >
+            <textarea
+              nz-input
+              formControlName="description"
+              placeholder="Describe the recipe"
+            ></textarea>
+          </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
+          <nz-form-label [nzSpan]="6" nzRequired>Ingredients</nz-form-label>
+          <nz-form-control [nzSpan]="18" nzErrorTip="Please list ingredients!">
+            <input
+              nz-input
+              formControlName="ingredients"
+              placeholder="Comma separated ingredients"
+            />
+          </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
+          <nz-form-label [nzSpan]="6" nzRequired>Name</nz-form-label>
+          <nz-form-control [nzSpan]="18" nzErrorTip="Please enter your name!">
+            <input nz-input formControlName="name" placeholder="Your name" />
+          </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
+          <nz-form-label [nzSpan]="6" nzRequired>Age</nz-form-label>
+          <nz-form-control [nzSpan]="18" nzErrorTip="Please enter age!">
+            <input
+              nz-input
+              formControlName="age"
+              type="number"
+              placeholder="Age"
+            />
+          </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
+          <nz-form-label [nzSpan]="6" nzRequired>Email</nz-form-label>
+          <nz-form-control [nzSpan]="18" [nzErrorTip]="emailErrorTpl">
+            <nz-input-group [nzPrefix]="emailIcon">
+              <input
+                nz-input
+                formControlName="email"
+                placeholder="Email"
+                type="email"
+              />
+            </nz-input-group>
+            <ng-template #emailIcon>
+              <nz-icon nzType="mail" nzTheme="outline" />
+            </ng-template>
+            <ng-template #emailErrorTpl let-control>
+              <ng-container *ngIf="control.hasError('required')">
+                Please input a valid email!
+              </ng-container>
+              <ng-container *ngIf="control.hasError('invalidEmail')">
+                Email must be in a valid format
+              </ng-container>
+            </ng-template>
+          </nz-form-control>
+        </nz-form-item>
+      </form>
+    </ng-container>
+  </nz-modal>
+</div>
