@@ -3,10 +3,9 @@
 
   <nz-table
     [nzData]="recipes"
-    [nzPageSize]="8"
     [nzScroll]="{ x: '1000px' }"
     [nzBordered]="false"
-    [nzFrontPagination]="true" 
+    [nzFrontPagination]="false"
     class="custom-recipe-table"
   >
     <thead>
@@ -22,7 +21,7 @@
       </tr>
     </thead>
      <tbody>
-    <tr *ngFor="let recipe of recipes" class="product-card">
+    <tr *ngFor="let recipe of pagedRecipes" class="product-card">
       <td>
         <img [src]="recipe.image" alt="{{ recipe.product }}" />
       </td>
@@ -40,4 +39,13 @@
     </tr>
   </tbody>
   </nz-table>
+  <nz-pagination
+  [nzTotal]="recipes.length"
+  [nzPageSize]="pageSize"
+  [(nzPageIndex)]="currentPage"
+  (nzPageIndexChange)="onPageChange($event)"
+  [nzShowSizeChanger]="false"
+  class="pagination-center"
+></nz-pagination>
 </div>
+

@@ -82,3 +82,55 @@
 ::ng-deep .ant-table-tbody > tr > td {
   border: none;
 }
+
+/* Pagination wrapper */
+::ng-deep .ant-pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: nowrap;  
+  margin-top: 1rem;
+  gap: 0.5rem; 
+}
+
+/* Pagination item buttons (including numbers) */
+::ng-deep .ant-pagination-item,
+::ng-deep .ant-pagination-prev,
+::ng-deep .ant-pagination-next {
+  border: none;
+  background-color: #614a3c;
+  color: white;
+  border-radius: 50px;
+  margin: 0 4px;
+  transition: all 0.3s ease;
+}
+
+/* Hover effect */
+::ng-deep .ant-pagination-item:hover,
+::ng-deep .ant-pagination-prev:hover,
+::ng-deep .ant-pagination-next:hover {
+  background-color: #7a5e47;
+  color: white;
+}
+
+/* Active page style */
+::ng-deep .ant-pagination-item-active {
+  background-color: #7a5e47 !important;
+  color: white !important;
+}
+
+/* Arrow icons inside prev/next buttons */
+::ng-deep .ant-pagination-prev .ant-pagination-item-link,
+::ng-deep .ant-pagination-next .ant-pagination-item-link {
+  color: white;
+  border: none;
+}
+
+/* Hover on disabled buttons (prev on page 1, for example) */
+::ng-deep .ant-pagination-disabled .ant-pagination-item-link {
+  color: #ccc;
+  background-color: #e8e8e8;
+  border-radius: 50px;
+  cursor: not-allowed;
+}
