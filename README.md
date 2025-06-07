@@ -5,22 +5,27 @@ This project is a website made for a coffee shop and it is generated using [Angu
 ## Features
 
 1. Interractive Home page with sliders of specials of the shop in: coffee, bakery and coffee bags.
-2. Working Navbar to: Home, Menu, Cart, About, Login and Searchbar.
+2. Working Navbar to: Home, Menu, Cart, About, Recipes, Login and Searchbar.
 3. Coffee & Bakery Menu that allows customer to add to Cart products.
 4. Interractive Cart that allows to modify the quantity of the products and shows the total sum.
-5. Working searchbar for products in the Menu.
+5. Working searchbar for products in the Menu page.
+6. Table of recipes that allows you to add a new recipe or edit an existing one.
 
 ## Technologies
 
 1. Angular 19
 2. HTML, CSS
 3. TypeScript
+4. NG-ZORRO – Ant Design for Angular
+5. LESS – For theme customization
    
 ## Get it started
 
 1. Download the zip archive from the branch 'master'.
 2. Run in the terminal 'cd Coffee-Shop-master'.
 3. Install dependencies if needed with 'npm install'.
+4. Install ng-zorro with 'npm install ng-zorro-antd'
+5. Install less with 'npm install less less-loader'
    
 ## Development server
 
@@ -54,6 +59,15 @@ Once the server is running, open your browser and navigate to `http://localhost:
 
 6. Search Functionality
 ![image](https://github.com/user-attachments/assets/e9ac3c54-c8a7-4704-afec-36b8f64fbd0a)
+
+7. Recipe Table
+![image](https://github.com/user-attachments/assets/4331eefe-fe80-411a-9cc2-cb5846ffa002)
+![image](https://github.com/user-attachments/assets/409cc3f3-d1a1-4603-9119-27d6d65b2776)
+![image](https://github.com/user-attachments/assets/47e64d41-451f-4781-93a1-b578b3a95e60)
+![image](https://github.com/user-attachments/assets/b78153aa-4aa7-42a8-b05c-5b2012ae8348)
+
+
+
 
 
 
