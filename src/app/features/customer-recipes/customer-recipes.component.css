@@ -3,7 +3,7 @@
   padding: 4rem;
   background-color: #fefcf9;
 }
-/* Alternare rânduri: alb / crem */
+/* Alternates rows: white / cream */
 ::ng-deep .ant-table-tbody > tr:nth-child(odd) {
   background-color: #ffffff;
 }
@@ -12,12 +12,12 @@
   background-color: #f2e8dc;
 }
 
-/* Centrează antetul tabelului */
+/* Centers the heather of the table */
 ::ng-deep .ant-table thead > tr > th {
   text-align: center;
 }
 
-/* Centrează celulele tabelului */
+/* Centers the columns of the table */
 ::ng-deep .ant-table tbody > tr > td {
   text-align: center;
   vertical-align: middle;
@@ -42,7 +42,7 @@
 
 }
 
-/* Stil pentru titluri */
+/* Titles */
 .product-name {
   color: #5c4435;
   font-weight: bold;
@@ -50,7 +50,7 @@
   text-align: center;
 }
 
-/* Buton de adăugare */
+/* Add button */
 .add-button {
   padding: 0.5rem 1rem;
   background-color: #614a3c;
@@ -72,7 +72,7 @@
   width: 130px;
 }
 
-/* Opțional: elimină liniile clasice de tabel */
+/* Eliminates delimitations of the rows and columns */
 ::ng-deep .ant-table-thead > tr > th {
   background-color: #f5f0e6;
   color: #3e2f24;
