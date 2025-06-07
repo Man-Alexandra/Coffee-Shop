@@ -31,7 +31,6 @@ import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
   templateUrl: './customer-recipes.component.html',
   styleUrls: ['./customer-recipes.component.css'],
 })
-
 export class CustomerRecipesComponent implements OnInit {
   recipes: Recipe[] = [];
   pageIndex = 1;
@@ -40,6 +39,8 @@ export class CustomerRecipesComponent implements OnInit {
   isModalVisible = false;
   isEditMode = false;
   recipeForm!: FormGroup;
+  selectedRecipeId: number | null = null;
+  selectedRecipeImage: string | null = null;
   constructor(private fb: FormBuilder) {}
 
   ngOnInit(): void {
@@ -77,9 +78,12 @@ export class CustomerRecipesComponent implements OnInit {
     const formValue = this.recipeForm.value;
 
     // Convert ingredients string to array
-    const newRecipe: Recipe = {
-      id: this.generateUniqueId(),
-      image: 'assets/default-coffee.jpg', // You can add an image upload later
+    const updatedRecipe: Recipe = {
+      id: this.selectedRecipeId ?? this.generateUniqueId(),
+      image:
+        this.isEditMode && this.selectedRecipeImage
+          ? this.selectedRecipeImage
+          : 'assets/default-coffee.jpg',
       product: formValue.product,
       description: formValue.description,
       ingredients: formValue.ingredients
@@ -90,13 +94,17 @@ export class CustomerRecipesComponent implements OnInit {
       email: formValue.email,
     };
 
-    if (this.isEditMode) {
-      // Update logic here if you implement edit
+    if (this.isEditMode && this.selectedRecipeId !== null) {
+      this.recipes = this.recipes.map((recipe) =>
+        recipe.id === this.selectedRecipeId ? updatedRecipe : recipe
+      );
     } else {
-      this.recipes = [...this.recipes, newRecipe];
+      this.recipes = [...this.recipes, updatedRecipe];
     }
 
     this.isModalVisible = false;
+    this.selectedRecipeId = null;
+    this.isEditMode = false;
     this.updateDisplayedRecipes();
   }
 
@@ -119,14 +127,27 @@ export class CustomerRecipesComponent implements OnInit {
     this.updateDisplayedRecipes();
   }
   generateUniqueId(): number {
-  return Math.floor(Math.random() * 1000000);
-}
-  openEditModal(){
-
+    return Math.floor(Math.random() * 1000000);
+  }
+  openEditModal(recipe: Recipe): void {
+    this.isEditMode = true;
+    this.selectedRecipeId = recipe.id;
+    this.selectedRecipeImage = recipe.image; // Save the current image
+    this.recipeForm.setValue({
+      product: recipe.product,
+      description: recipe.description,
+      ingredients: recipe.ingredients.join(', '), // convert array to comma-separated string
+      name: recipe.name,
+      age: recipe.age,
+      email: recipe.email,
+    });
+    this.isModalVisible = true;
   }
 }
 
-const strictEmailValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
+const strictEmailValidator: ValidatorFn = (
+  control: AbstractControl
+): ValidationErrors | null => {
   const email = control.value;
   if (!email) return null;
 
